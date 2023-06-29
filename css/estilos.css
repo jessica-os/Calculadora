@@ -1,47 +1,54 @@
-.fundo {
-	background-image: linear-gradient(45deg, rgb(120, 248, 248), rgb(166, 166, 250));
+body {
+	background: linear-gradient(to right, #2a2333, #a458a773);
+	font-family: "Roboto", sans-serif;
+	font-weight: 700;
+}
+.grid-container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	align-content: center;
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(4, 90px);
+	grid-template-rows: minmax(120px, auto) repeat(5, 80px);
 }
-.calculadora {
-	width: 350px;
-	height: 470px;
-	background-color: #6b6a6a;
-	color: #fff;
-	border-radius: 15px;
-	padding: 20px;
+
+.grid-container > button {
+	cursor: pointer;
+	font-size: 20px;
+	border: none;
+	background-color: #111;
+	color: #eee;
+	outline: none;
+    transition: .3s ease-in-out;
+}
+.grid-container > button:hover{
+    background-color: rgba(255, 255  , 255, 0.75);
+    color: #111;
+}
+
+.grid-container > .operator {
+	background-color: #39233a73;
+}
+.span-two {
+	grid-column: span 2;
+}
+.grid-container > .output {
+	grid-column: 1/-1;
+	background-color: #222;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	font-family: Arial, Helvetica, sans-serif;
+	align-items: flex-end;
+	justify-content: space-around;
+	padding: 15px;
+	word-wrap: break-word;
+	word-break: break-all;
 }
-h1 {
-	margin-bottom: 10px;
+.grid-container > .output > .previous-operand {
+    color: rgba(255, 255  , 255, 0.75);
+    font-size: 20px;
 }
-#resultado {
-	width: 260px;
-	height: 50px;
-	background-color: #fff;
-}
-button {
-	width: 60px;
-	height: 60px;
-	margin: 3px;
-	font-size: 25px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.3s;
-    
-}
-button:hover {
-	background-color: rgb(71, 71, 71);
-}
-.igual{
-  height: 126px;
-}
-.zero{
-    width: 126px
+.grid-container> .output> .current-operand{
+    color: white;
+    font-size: 35px;
 }
