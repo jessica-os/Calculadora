@@ -1,38 +1,34 @@
 const telaResultado = document.querySelector("#tela-resultado");
-const botaoNumero = document.querySelectorAll("#numero");
-const operacao = document.querySelectorAll("#operador");
+const botaoCalc = document.querySelectorAll("#botao-calc");
+
 const limparTudo = document.querySelector("#limpar-tudo");
 const deletar = document.querySelector("#deletar");
 const igual = document.querySelector("#igual");
 
-botaoNumero.forEach(numero => {
-	numero.addEventListener("click", () => {
-		const valorClicado = numero.innerHTML;
+botaoCalc.forEach(botao => {
+	botao.addEventListener("click", () => {
+		const valorClicado = botao.innerHTML;
 
-		inserirNumeroNaTela(valorClicado);
-	});
-});
-operacao.forEach(operador => {
-	operador.addEventListener("click", () => {
-		const operadorClicado = operador.innerHTML;
-
-		inserirOperadorNaTela(operadorClicado);
+		inserirValorNaTela(valorClicado);
 	});
 });
 
-function inserirNumeroNaTela(numero) {
-	if (telaResultado.innerHTML.includes(".") && numero === ".") {
+function inserirValorNaTela(botao) {
+	let ultimoElementoClicado = telaResultado.innerHTML[telaResultado.innerHTML.length - 1];
+
+	if (ultimoElementoClicado && !Number(ultimoElementoClicado) && !Number(botao)) {
+		telaResultado.innerHTML = telaResultado.innerHTML.toString().slice(0, -1);
+	}
+	if (telaResultado.innerHTML == 0 && !Number(botao)) {
 		return;
 	}
-	telaResultado.innerHTML += numero;
+	if (telaResultado.innerHTML.includes(".") && botao === ".") {
+		return;
+	}
+
+	telaResultado.innerHTML += botao;
 }
 
-function inserirOperadorNaTela(operador) {
-	if (telaResultado.innerHTML == 0 && !Number(operador)) {
-		return;
-	}
-	telaResultado.innerHTML += operador;
-}
 function limpar() {
 	limparTudo.addEventListener("click", () => {
 		telaResultado.innerHTML = "";
@@ -46,6 +42,7 @@ function deletarTudo() {
 	});
 }
 deletarTudo();
+
 function executarCalculo() {
 	igual.addEventListener("click", () => {
 		if (telaResultado.innerHTML === "") {
