@@ -1,6 +1,5 @@
 const telaResultado = document.querySelector("#tela-resultado");
 const botaoCalc = document.querySelectorAll("#botao-calc");
-
 const limparTudo = document.querySelector("#limpar-tudo");
 const deletar = document.querySelector("#deletar");
 const igual = document.querySelector("#igual");
@@ -16,7 +15,13 @@ botaoCalc.forEach(botao => {
 function inserirValorNaTela(botao) {
 	let ultimoElementoClicado = telaResultado.innerHTML[telaResultado.innerHTML.length - 1];
 
-	if (ultimoElementoClicado && !Number(ultimoElementoClicado) && !Number(botao)) {
+	if (
+		ultimoElementoClicado &&
+		!Number(ultimoElementoClicado) &&
+		!Number(botao) &&
+		ultimoElementoClicado != 0 &&
+		botao != 0
+	) {
 		telaResultado.innerHTML = telaResultado.innerHTML.toString().slice(0, -1);
 	}
 	if (telaResultado.innerHTML == 0 && !Number(botao)) {
